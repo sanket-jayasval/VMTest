@@ -3,7 +3,7 @@ package no.vmond.test;
 public class FizzBuzz {
 
     private final  String FIZZ = "Fizz";
-    private final  String BUZZ = "Fizz";
+    private final  String BUZZ = "Buzz";
 
     public static void main(String[] args) {
 
@@ -25,7 +25,7 @@ public class FizzBuzz {
      *      i) number is multiple of 5 then print "Fizz" e.g 5,10,15 for this number o/p should be "Buzz"
      *      i) number is multiple of 3 & 5 then print "Fizz" e.g 15,30 for this number o/p should be "FizzBuzz"
      */
-    private void generatePrintSequence(int num, StringBuilder stringBuilder) {
+    public void generatePrintSequence(int num, StringBuilder stringBuilder) {
         boolean isFactorable = false ;
         if(num%3==0) {
             stringBuilder.append(FIZZ) ;

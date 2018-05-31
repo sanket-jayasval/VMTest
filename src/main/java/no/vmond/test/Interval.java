@@ -19,8 +19,8 @@ public class Interval {
             String excIntervals = scanner.nextLine();
             int[][] excPairs = interval.validateAndConvert(excIntervals);
 
-        interval.displayIntervals(incPairs , excPairs );
-
+        String resultPairs = interval.getResultPairs(incPairs, excPairs);
+        System.out.println("Result :\n" + resultPairs);
     }
 
 
@@ -45,11 +45,10 @@ public class Interval {
      *                  Ee > Ien (iterate next and compare)
      *              }
      *          }
-     *
-     * @param incPairs - Contains Set of include pairs 10-100
+     *@param incPairs - Contains Set of include pairs 10-100
      * @param excPairs - Contains Set of exclude pairs 20-30
      */
-    private void displayIntervals(int[][] incPairs, int[][] excPairs) {
+    public String getResultPairs(int[][] incPairs, int[][] excPairs) {
 
         TreeMap<Integer, Integer> resultSet = new TreeMap<>();
 
@@ -106,7 +105,7 @@ public class Interval {
             sb.append(start).append("-").append(resultSet.get(start));
             i++ ;
         }
-        System.out.println("Result : \n " + sb.toString());
+        return sb.toString();
     }
 
     /**
@@ -114,7 +113,7 @@ public class Interval {
      * @param incIntervals
      * @return
      */
-    private int[][] validateAndConvert(String incIntervals) {
+    public int[][] validateAndConvert(String incIntervals) {
         TreeMap<Integer, Integer> incIntervalSet = sortPairsBasedOnFirstElement(incIntervals);
         return convertMapToArray(incIntervalSet);
     }
@@ -154,10 +153,11 @@ public class Interval {
 
             for (String interval : split) {
 
-                String[] nums = interval.split("-");
-
-                // each pair store as key and value for sorting by Key, 10-100 will be store as map.put(10, 100)
-                integerTreeMap.put(Integer.valueOf(nums[0].trim()), Integer.valueOf(nums[1].trim()));
+                if(interval.trim() != "") {
+                    String[] nums = interval.split("-");
+                    // each pair store as key and value for sorting by Key, 10-100 will be store as map.put(10, 100)
+                    integerTreeMap.put(Integer.valueOf(nums[0].trim()), Integer.valueOf(nums[1].trim()));
+                }
             }
 
         } catch (Exception e) {
